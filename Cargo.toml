@@ -1,0 +1,13 @@
+[package]
+name = "operations_parser_kucherenko"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "A Rust-based parser for basic math operations."
+authors = ["Daniil Kucherenko"]
+readme = "README.md"
+
+[dependencies]
+pest = "2.7.14"
+pest_derive = "2.7.14"
+anyhow = "1.0.91"
