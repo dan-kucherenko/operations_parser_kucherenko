@@ -1,9 +1,9 @@
+use anyhow::{Context, Result};
 use pest::Parser;
 use pest_derive::Parser;
-use anyhow::{Result, Context};
 
 #[derive(Parser)]
-#[grammar = "grammar.pest"] 
+#[grammar = "grammar.pest"]
 pub struct ArithmeticParser;
 
 pub fn parse_expression(input: &str) -> Result<()> {
