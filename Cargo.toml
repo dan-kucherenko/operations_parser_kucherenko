@@ -3,9 +3,11 @@ name = "operations_parser_kucherenko"
 version = "0.1.0"
 edition = "2021"
 license = "MIT"
-description = "A Rust-based parser for basic math operations."
+description = "A Rust-based parser for basic math operations with function support"
 authors = ["Daniil Kucherenko"]
 readme = "README.md"
+repository = "https://github.com/yourusername/expression_parser"
+homepage = "https://github.com/yourusername/expression_parser"
 
 [dependencies]
 pest = "2.7.14"
