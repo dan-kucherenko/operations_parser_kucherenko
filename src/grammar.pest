@@ -1,0 +1,17 @@
+WHITESPACE = _{ " " | "\t" }
+
+expression = _{ sum }
+sum = { product ~ (add_op ~ product)* }
+product = { power ~ (mul_op ~ power)* }
+power = { unary ~ (exp_op ~ unary)* }
+unary = { unary_op? ~ primary }
+primary = { number | function_call | "(" ~ expression ~ ")" }
+number = @{ "-"? ~ ASCII_DIGIT+ ~ ("." ~ ASCII_DIGIT+)? }
+
+add_op = { "+" | "-" }
+mul_op = { "*" | "/" }
+exp_op = { "^" }
+unary_op = { "+" | "-" }
+
+function_call = { ident ~ "(" ~ expression ~ ")" }
+ident = @{ ASCII_ALPHA+ }
