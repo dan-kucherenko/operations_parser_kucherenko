@@ -6,8 +6,8 @@ license = "MIT"
 description = "A Rust-based parser for basic math operations with function support"
 authors = ["Daniil Kucherenko"]
 readme = "README.md"
-repository = "https://github.com/yourusername/expression_parser"
-homepage = "https://github.com/yourusername/expression_parser"
+repository = "https://github.com/dan-kucherenko/operations_parser_kucherenko"
+homepage = "https://github.com/dan-kucherenko/operations_parser_kucherenko"
 
 [dependencies]
 pest = "2.7.14"
