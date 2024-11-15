@@ -2,7 +2,7 @@
 
 ## Links
 
-- **Documentation**: [Docs.rs](file:///Users/daniil/Developer/rust-naukma/operations_parser_kucherenko/target/doc/operations_parser/index.html)
+- **Documentation**: [Docs.rs](https://docs.rs/operations_parser/latest/operations_parser/)
 - **Crate on crates.io**: [crates.io](https://crates.io/crates/operations_parser)
 
 **Operations Parser** is a Rust-based library that parses and evaluates arithmetic expressions.
