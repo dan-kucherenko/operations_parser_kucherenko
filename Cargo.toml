@@ -1,5 +1,5 @@
 [package]
-name = "operations_parser_kucherenko"
+name = "operations_parser"
 version = "0.1.1"
 edition = "2021"
 license = "MIT"
@@ -13,3 +13,4 @@ homepage = "https://github.com/dan-kucherenko/operations_parser_kucherenko"
 pest = "2.7.14"
 pest_derive = "2.7.14"
 anyhow = "1.0.91"
+thiserror = "2.0.3"

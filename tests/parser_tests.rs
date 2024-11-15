@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod tests {
     use super::*;
-    use operations_parser_kucherenko::{ArithmeticParser, Rule};
+    use operations_parser::{ArithmeticParser, Rule};
     use pest::Parser;
 
     #[test]

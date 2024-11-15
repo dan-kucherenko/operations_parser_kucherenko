@@ -1,5 +1,5 @@
 use anyhow::Result;
-use operations_parser_kucherenko::parse_expression;
+use operations_parser::parse_expression;
 use std::env;
 use std::fs;
 
