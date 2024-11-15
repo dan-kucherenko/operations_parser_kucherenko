@@ -1,11 +1,11 @@
-# math_operations_parser_kucherenko
+# operations_parser
 
 ## Links
 
-- **Documentation**: [docs.rs/operations_parser_kucherenko](https://docs.rs/operations_parser_kucherenko)
-- **Crate on crates.io**: [crates.io/crates/operations_parser_kucherenko](https://crates.io/crates/operations_parser_kucherenko)
+- **Documentation**: [Docs.rs](file:///Users/daniil/Developer/rust-naukma/operations_parser_kucherenko/target/doc/operations_parser/index.html)
+- **Crate on crates.io**: [crates.io](https://crates.io/crates/operations_parser)
 
-**Math Operations Parser** is a Rust-based library that parses and evaluates arithmetic expressions.
+**Operations Parser** is a Rust-based library that parses and evaluates arithmetic expressions.
 
 ## Features
 
