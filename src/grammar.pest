@@ -1,49 +1,113 @@
-// Whitespace handling for spaces and tabs, skipped in parsing
+// // Whitespace handling for spaces and tabs, skipped in parsing
+// WHITESPACE = _{ " " | "\t" }
+
+// // The top-level rule that parses an entire arithmetic expression.
+// // It starts with `sum`, which handles the highest level operations (addition and subtraction).
+// expression = _{ sum }
+
+// // `sum` represents addition and subtraction, the highest precedence in basic arithmetic.
+// // It expects one or more `product` terms, optionally separated by `add_op`.
+// sum = { product ~ (add_op ~ product)* }
+
+// // `product` handles multiplication and division, which have higher precedence than `sum`.
+// // It expects one or more `power` terms, optionally separated by `mul_op`.
+// product = { power ~ (mul_op ~ power)* }
+
+// // `power` handles exponentiation, which has higher precedence than multiplication and division.
+// // It expects one or more `unary` terms, optionally separated by `exp_op`.
+// power = { unary ~ (exp_op ~ unary)* }
+
+// // `unary` handles unary operators (e.g., positive and negative signs).
+// // It optionally matches a `unary_op`, followed by a `primary` term (number, function, or grouped expression).
+// unary = { unary_op? ~ primary }
+
+// // `primary` handles the fundamental components of an expression, including numbers, function calls, 
+// // and grouped expressions (parentheses). It ensures that complex expressions are properly nested.
+// primary = { number | function_call | "(" ~ expression ~ ")" }
+
+// // `number` matches an integer or decimal number, optionally starting with a negative sign.
+// // The number must consist of ASCII digits and may contain a decimal point.
+// number = @{ "-"? ~ ASCII_DIGIT+ ~ ("." ~ ASCII_DIGIT+)? }
+
+// // `add_op` represents the addition and subtraction operators, used within `sum`.
+// add_op = { "+" | "-" }
+
+// // `mul_op` represents the multiplication and division operators, used within `product`.
+// mul_op = { "*" | "/" }
+
+// // `exp_op` represents the exponentiation operator `^`, used within `power`.
+// exp_op = { "^" }
+
+// // `unary_op` represents unary plus and minus operators, used within `unary`.
+// unary_op = { "+" | "-" }
+
+// // `function_call` matches a function identifier (e.g., `sin`, `sqrt`) followed by an expression in parentheses.
+// // This allows parsing of single-argument functions.
+// function_call = { ident ~ "(" ~ expression ~ ")" }
+
+// // `ident` matches alphabetic characters, representing a function name or constant identifier.
+// ident = @{ ASCII_ALPHA+ }
+
+
+// Arithmetic Expression Grammar
+//
+// This grammar defines the syntax for parsing arithmetic expressions. It supports basic arithmetic
+// operations, parentheses for grouping, function calls, and numbers (both integers and decimals).
+// Whitespace handling is included to skip spaces and tabs during parsing.
+//
+// Top-level rule: `expression`
+// Operators:
+// - Addition and subtraction: `+`, `-` (rule: `add_op`)
+// - Multiplication and division: `*`, `/` (rule: `mul_op`)
+// - Exponentiation: `^` (rule: `exp_op`)
+// - Unary operators: `+`, `-` (rule: `unary_op`)
+// Components:
+// - Numbers: Integer and decimal numbers (rule: `number`)
+// - Function calls: Single-argument functions like `sin(x)` or `sqrt(x)` (rule: `function_call`)
+// - Parentheses: For grouping expressions.
+
+// Handles spaces and tabs, which are skipped during parsing.
 WHITESPACE = _{ " " | "\t" }
 
 // The top-level rule that parses an entire arithmetic expression.
-// It starts with `sum`, which handles the highest level operations (addition and subtraction).
 expression = _{ sum }
 
-// `sum` represents addition and subtraction, the highest precedence in basic arithmetic.
-// It expects one or more `product` terms, optionally separated by `add_op`.
+// Handles addition and subtraction (lowest precedence in arithmetic).
 sum = { product ~ (add_op ~ product)* }
 
-// `product` handles multiplication and division, which have higher precedence than `sum`.
-// It expects one or more `power` terms, optionally separated by `mul_op`.
+// Handles multiplication and division (higher precedence than addition and subtraction).
 product = { power ~ (mul_op ~ power)* }
 
-// `power` handles exponentiation, which has higher precedence than multiplication and division.
-// It expects one or more `unary` terms, optionally separated by `exp_op`.
+// Handles exponentiation (higher precedence than multiplication and division).
 power = { unary ~ (exp_op ~ unary)* }
 
-// `unary` handles unary operators (e.g., positive and negative signs).
-// It optionally matches a `unary_op`, followed by a `primary` term (number, function, or grouped expression).
+// Handles unary operators (`+` or `-`).
 unary = { unary_op? ~ primary }
 
-// `primary` handles the fundamental components of an expression, including numbers, function calls, 
-// and grouped expressions (parentheses). It ensures that complex expressions are properly nested.
+// Fundamental components of an expression:
+// - `number`: Matches a number (integer or decimal).
+// - `function_call`: Matches a function call like `sin(x)` or `sqrt(16)`.
+// - Parentheses: Matches expressions grouped with `(` and `)`.
 primary = { number | function_call | "(" ~ expression ~ ")" }
 
-// `number` matches an integer or decimal number, optionally starting with a negative sign.
-// The number must consist of ASCII digits and may contain a decimal point.
+// Matches an integer or decimal number, optionally starting with a negative sign.
 number = @{ "-"? ~ ASCII_DIGIT+ ~ ("." ~ ASCII_DIGIT+)? }
 
-// `add_op` represents the addition and subtraction operators, used within `sum`.
+// Matches addition (`+`) and subtraction (`-`) operators, used within `sum`.
 add_op = { "+" | "-" }
 
-// `mul_op` represents the multiplication and division operators, used within `product`.
+// Matches multiplication (`*`) and division (`/`) operators, used within `product`.
 mul_op = { "*" | "/" }
 
-// `exp_op` represents the exponentiation operator `^`, used within `power`.
+// Matches the exponentiation operator `^`, used within `power`.
 exp_op = { "^" }
 
-// `unary_op` represents unary plus and minus operators, used within `unary`.
+// Matches unary plus (`+`) and minus (`-`) operators, used within `unary`.
 unary_op = { "+" | "-" }
 
-// `function_call` matches a function identifier (e.g., `sin`, `sqrt`) followed by an expression in parentheses.
-// This allows parsing of single-argument functions.
+// Matches a function identifier followed by an expression in parentheses.
+// Examples: `sin(3.14)`, `sqrt(16)`
 function_call = { ident ~ "(" ~ expression ~ ")" }
 
-// `ident` matches alphabetic characters, representing a function name or constant identifier.
+// Matches alphabetic characters, representing a function name or constant identifier.
 ident = @{ ASCII_ALPHA+ }
