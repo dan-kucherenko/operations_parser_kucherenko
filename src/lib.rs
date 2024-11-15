@@ -1,14 +1,19 @@
-use anyhow::{Context, Result};
 use pest::Parser;
 use pest_derive::Parser;
+use thiserror::Error;
 
 #[derive(Parser)]
 #[grammar = "grammar.pest"]
 pub struct ArithmeticParser;
 
-pub fn parse_expression(input: &str) -> Result<()> {
-    let pairs = ArithmeticParser::parse(Rule::expression, input)
-        .context("Failed to parse the arithmetic expression")?;
+#[derive(Debug, Error)]
+pub enum ParseError {
+    #[error("Failed to parse the arithmetic expression")]
+    PestError(#[from] pest::error::Error<Rule>),
+}
+
+pub fn parse_expression(input: &str) -> Result<(), ParseError> {
+    let pairs = ArithmeticParser::parse(Rule::expression, input)?;
 
     print_parse_tree(pairs, 0);
     Ok(())
